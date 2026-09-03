@@ -1,4 +1,4 @@
-# ⚡ TypeEXE
+# TypeEXE
 
 A clean, responsive, and minimal typing test built with vanilla HTML, CSS, and JavaScript. Designed for speed, precision, and an aesthetic typing experience inspired by modern color palettes.
 
