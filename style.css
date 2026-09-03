@@ -1,0 +1,318 @@
+:root {
+    --bg: #1e1e2e;
+    --main: #cba6f7; 
+    --caret: #cba6f7;
+    --sub: #6c7086;
+    --text: #cdd6f4;
+    --error: #f38ba8;
+    --error-extra: #eba0ac;
+}
+
+body.theme-macchiato {
+    --bg: #24273a;
+    --main: #c6a0f6;
+    --caret: #c6a0f6;
+    --sub: #6e738d;
+    --text: #cad3f5;
+    --error: #ed8796;
+    --error-extra: #ee99a0;
+}
+
+body.theme-frappe {
+    --bg: #303446;
+    --main: #ca9ee6;
+    --caret: #ca9ee6;
+    --sub: #737994;
+    --text: #c6d0f5;
+    --error: #e78284;
+    --error-extra: #ea999c;
+}
+
+body.theme-latte {
+    --bg: #eff1f5;
+    --main: #8839ef;
+    --caret: #8839ef;
+    --sub: #9ca0b0;
+    --text: #4c4f69;
+    --error: #d20f39;
+    --error-extra: #e64553;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Strict Fullscreen Lockdown - No Scrollbars */
+html, body {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: 'Fira Code', monospace;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.container {
+    width: 100vw;
+    height: 100vh;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 1.5rem 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+header {
+    flex-shrink: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--text);
+}
+
+.logo svg { color: var(--main); }
+
+.config-bar {
+    display: flex;
+    align-items: center;
+    background: rgba(0,0,0,0.18);
+    padding: 0.4rem 0.8rem;
+    border-radius: 12px;
+    gap: 0.8rem;
+}
+
+.config-group { display: flex; gap: 0.4rem; }
+
+.config-btn {
+    background: none;
+    border: none;
+    color: var(--sub);
+    font-family: inherit;
+    font-size: 0.85rem;
+    cursor: pointer;
+    padding: 0.2rem 0.4rem;
+    border-radius: 4px;
+    transition: color 0.2s;
+}
+
+.config-btn:hover { color: var(--text); }
+.config-btn.active { color: var(--main); }
+
+.divider {
+    width: 4px;
+    height: 4px;
+    background: var(--sub);
+    border-radius: 50%;
+}
+
+main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-height: calc(100vh - 120px);
+    overflow: hidden;
+}
+
+#test-wrapper {
+    position: relative;
+    cursor: text;
+    width: 100%;
+}
+
+#timer {
+    font-size: 1.4rem;
+    color: var(--main);
+    margin-bottom: 0.8rem;
+}
+
+.words-container {
+    font-size: 1.8rem;
+    line-height: 1.4;
+    color: var(--sub);
+    height: 105px;
+    overflow: hidden;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    user-select: none;
+    position: relative;
+    transition: filter 0.3s, transform 0.2s ease;
+}
+
+.words-container.blurred { filter: blur(4px); }
+
+.word {
+    margin-right: 0.6em;
+    display: inline-flex;
+    border-bottom: 2px solid transparent;
+}
+
+.word.error-border { border-bottom-color: var(--error); }
+
+.letter { position: relative; }
+.letter.correct { color: var(--text); }
+.letter.incorrect { color: var(--error); }
+.letter.incorrect-extra { color: var(--error-extra); }
+
+/* Dynamically fitted Caret */
+.caret {
+    position: absolute;
+    width: 2px;
+    background-color: var(--caret);
+    transition: left 0.08s ease, top 0.08s ease, height 0.08s ease;
+    animation: blink 1s infinite;
+    z-index: 10;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+#hidden-input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+#results {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+}
+
+#results.hidden { display: none; }
+
+.stats-grid {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.stat { text-align: center; }
+.stat-title {
+    color: var(--sub);
+    font-size: 1rem;
+    margin-bottom: 0.2rem;
+}
+.stat-value {
+    color: var(--main);
+    font-size: 2.4rem;
+    font-weight: 700;
+}
+
+.chart-wrapper {
+    position: relative;
+    height: 150px;
+    width: 100%;
+}
+
+#restart-btn {
+    display: block;
+    margin: 1.2rem auto 0;
+    background: none;
+    border: none;
+    color: var(--sub);
+    cursor: pointer;
+    padding: 0.8rem;
+    border-radius: 50%;
+    transition: background 0.2s, color 0.2s;
+}
+
+#restart-btn:hover {
+    background: rgba(0,0,0,0.15);
+    color: var(--text);
+}
+
+/* Always-pinned Bottom Footer */
+footer {
+    flex-shrink: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 0.8rem;
+}
+
+.theme-selector {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--sub);
+}
+
+.theme-selector select {
+    background: none;
+    border: none;
+    color: var(--sub);
+    font-family: inherit;
+    font-size: 0.85rem;
+    cursor: pointer;
+    outline: none;
+}
+
+.theme-selector select:hover { color: var(--text); }
+.theme-selector select option {
+    background: var(--bg);
+    color: var(--text);
+}
+
+.copyright {
+    color: var(--sub);
+    font-size: 0.8rem;
+    opacity: 0.8;
+}
+
+.dev-pill {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(0,0,0,0.18);
+    color: var(--sub);
+    padding: 0.35rem 0.8rem;
+    border-radius: 999px;
+    text-decoration: none;
+    font-size: 0.8rem;
+    transition: all 0.2s ease;
+    border: 1px solid transparent;
+}
+
+.pill-logo {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    object-fit: contain;
+}
+
+.dev-pill:hover {
+    background: rgba(0,0,0,0.28);
+    color: var(--main);
+    border-color: rgba(255,255,255,0.05);
+}
+
+/* Screen Size Optimizations */
+@media (max-width: 768px) {
+    .container { padding: 1rem; }
+    header { flex-direction: column; gap: 0.8rem; }
+    .words-container { font-size: 1.4rem; height: 90px; }
+    .stat-value { font-size: 1.8rem; }
+    .chart-wrapper { height: 110px; }
+    footer { font-size: 0.75rem; }
+    .copyright { display: none; } /* Clean up footer on small screens */
+}
