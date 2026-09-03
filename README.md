@@ -1,3 +1,5 @@
+[![Developed & Maintained by CaptainEXE](https://img.shields.io/badge/Developed%20%26%20Maintained%20by-CaptainEXE-00FFFF?style=for-the-badge&labelColor=0e1117&logo=reactivex&logoColor=white)](https://thecaptainexe.vercel.app/)
+---
 # TypeEXE
 
 A clean, responsive, and minimal typing test built with vanilla HTML, CSS, and JavaScript. Designed for speed, precision, and an aesthetic typing experience inspired by modern color palettes.
